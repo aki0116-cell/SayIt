@@ -35,11 +35,8 @@ const observer = new MutationObserver(() => {
 
         if (newWords.length > 0) {
             const recommendations = newWords.map(word => sendDataToAPI(word));
-            const translations = newWords.map(word => sendDataToTranslate(word));
-            const rAndT = Promise.all([...recommendations, ...translations]);
-            
 
-            Promise.all(rAndT).then(suggestions => {
+            Promise.all(recommendations).then(suggestions => {
                 createCoachUI(newWords, suggestions || []);
             });
         }
@@ -77,28 +74,12 @@ function countWords(text ,countObj) {
 
 
 async function sendDataToAPI(data) {
-   
-    const dictUrl = `https://api.datamuse.com/words?rel_syn=${encodeURIComponent(data)}&max=3`;
+    
     try {
-        const response = await fetch(dictUrl);
+        const response = await fetch('https://api.datamuse.com/words?rel_syn=' + encodeURIComponent(data) + '&max=3');
         const result = await response.json();
         return result.map(i => i.word);
     }   catch (e) {
         console.error(e);
     }
 }
-
-async function sendDataToTranslate(data) {
-   
-    const translateUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-TW&dt=t&q=${data}`;
-    try {
-        const response = await fetch(translateUrl);
-        const result = await response.json();
-        return result.map(i => i.word);
-    }   catch (e) {
-        console.error(e);
-    }
-}
-
-
- 
