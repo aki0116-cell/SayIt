@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "SayIt",
+  "version": "1.0",
+  "description": "分析語音對話並提供詞彙建議",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["dom.js", "logic.js"]
+    }
+  ]
+}
