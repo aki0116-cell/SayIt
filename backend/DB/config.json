@@ -1,8 +1,0 @@
-{
-  "DB_TYPE": "mssql+aioodbc",
-  "DB_HOST": "ZELTA01-X",
-  "DB_NAME": "SayItDB",
-  "DB_DRIVER": "ODBC Driver 17 for SQL Server",
-  "TRUSTED_CONNECTION": "yes"
-}
-
