@@ -72,14 +72,13 @@ function countWords(text ,countObj) {
     return [...new Set(cantUse)];
 }
 
-
-async function sendDataToAPI(data) {
-    
-    try {
-        const response = await fetch('https://api.datamuse.com/words?rel_syn=' + encodeURIComponent(data) + '&max=3');
-        const result = await response.json();
-        return result.map(i => i.word);
-    }   catch (e) {
-        console.error(e);
+async function getUserId() {
+    const result = await chrome.storage.local.get(['sayit_user_id']);
+    if (result.sayit_user_id) {
+        return result.sayit_user_id;
+    } else {
+        const newId = 'user_' + Math.random().toString(36).substr(2, 9);
+        await chrome.storage.local.set({ sayit_user_id: newId });
+        return newId;
     }
 }
