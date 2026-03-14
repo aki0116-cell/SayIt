@@ -3,7 +3,7 @@ import urllib.parse
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 
-DB_config = r"config.json"
+DB_config = r"DB\config.json"
 with open(DB_config, "r", encoding="utf-8") as f:
     config = json.load(f)
 

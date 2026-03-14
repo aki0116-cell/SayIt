@@ -1,0 +1,14 @@
+
+backend/.venv/
+**/__pycache__/
+
+.env
+backend/db/config.json
+
+
+*.db
+*.log
+note.txt
+
+.DS_Store
+Thumbs.db
